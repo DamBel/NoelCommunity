@@ -57,6 +57,7 @@ public class MapActivity extends AppCompatActivity {
     TileRendererLayer tileRendererLayer;
     TileCache tileCache;
     District district;
+    LatLong position_courante;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,9 +91,9 @@ public class MapActivity extends AppCompatActivity {
                 mapView.getModel().frameBufferModel.getOverdrawFactor()
         );
 
-        this.afficherChemin();
+        //this.afficherChemin();
 
-        this.getTrees(1);
+        //this.getTrees(1);
 
     }
 
@@ -186,7 +187,9 @@ public class MapActivity extends AppCompatActivity {
             public boolean onTap(LatLong geoPoint, Point viewpos, Point tapPoint) {
 
                 if (contains(viewpos, tapPoint)) {
-                    Toast.makeText(MapActivity.this, "clicked marker", Toast.LENGTH_SHORT).show();
+
+                    afficherChemin(position_courante, geoPoint);
+                    //Toast.makeText(MapActivity.this, "clicked marker", Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 return false;
@@ -266,7 +269,9 @@ public class MapActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
 
+                LatLong tmp = new LatLong(location.getLatitude(), location.getLongitude());
 
+                position_courante = tmp;
 
                 drawMaker(R.drawable.jesuisici,
                         new LatLong(location.getLatitude(), location.getLongitude()));
@@ -336,9 +341,14 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
-    public void afficherChemin(){
+    public void afficherChemin(LatLong currentPos, LatLong destPos){
 
-        String requête = "http://www.mapquestapi.com/directions/v2/route?key=deamSBfbxULjOkFvP9dW1QiAKewVYxVg&json={locations:[{latLng:{lat:48.8418565,lng:2.2683737}},{latLng:{lat:48.846275,lng:2.354964}}]}";
+        double currentLat = currentPos.getLatitude();
+        double currentLong = currentPos.getLongitude();
+        double destLat = destPos.getLatitude();
+        double destLong = destPos.getLongitude();
+
+        String requête = "http://www.mapquestapi.com/directions/v2/route?key=deamSBfbxULjOkFvP9dW1QiAKewVYxVg&json={locations:[{latLng:{lat:" + currentLat + ",lng:" + currentLong + "}},{latLng:{lat:" + destLat + ",lng:" + destLong +"}}]}";
 
         DirectionTask directionTask = new DirectionTask(MapActivity.this);
 
