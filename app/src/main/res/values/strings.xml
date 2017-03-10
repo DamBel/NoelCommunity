@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NoelCommunity</string>
+    <string name="bouton_connexion">S\'authentifier</string>
+    <string name="bouton_création">Créer un compte</string>
 </resources>

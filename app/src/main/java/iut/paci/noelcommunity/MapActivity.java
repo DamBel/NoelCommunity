@@ -33,6 +33,7 @@ import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.datastore.MapDataStore;
+import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.overlay.Polyline;
@@ -58,6 +59,7 @@ public class MapActivity extends AppCompatActivity {
     TileCache tileCache;
     District district;
     LatLong position_courante;
+    Marker user_position = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -181,7 +183,8 @@ public class MapActivity extends AppCompatActivity {
         Drawable drawable = getResources().getDrawable(resourceId);
         Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
         bitmap.scaleTo(130, 130);
-        Marker marker = new Marker(geoPoint, bitmap, 0, -bitmap.getHeight() / 2) {
+
+        user_position = new Marker(geoPoint, bitmap, 0, -bitmap.getHeight() / 2) {
 
             @Override
             public boolean onTap(LatLong geoPoint, Point viewpos, Point tapPoint) {
@@ -196,7 +199,15 @@ public class MapActivity extends AppCompatActivity {
             }
         };
 
-        mapView.getLayerManager().getLayers().add(marker);
+        //tentative du refresh du marker, sans succès pour l'instant
+
+        /*if (true){
+            mapView.getLayerManager().getLayers().get(mapView.getLayerManager().getLayers().indexOf(user_position) - 1).setVisible(false);
+            Boolean bool = mapView.getLayerManager().getLayers().get(mapView.getLayerManager().getLayers().indexOf(user_position) - 1).isVisible();
+            Toast.makeText(MapActivity.this, ""+bool, Toast.LENGTH_SHORT).show();
+        }*/
+
+        mapView.getLayerManager().getLayers().add(user_position);
 
     }
 
