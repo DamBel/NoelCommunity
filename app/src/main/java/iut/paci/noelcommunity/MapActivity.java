@@ -354,15 +354,20 @@ public class MapActivity extends AppCompatActivity {
 
     public void afficherChemin(LatLong currentPos, LatLong destPos){
 
-        double currentLat = currentPos.getLatitude();
-        double currentLong = currentPos.getLongitude();
-        double destLat = destPos.getLatitude();
-        double destLong = destPos.getLongitude();
+        if (currentPos == null){
+            Toast.makeText(mapView.getContext(), "Position actuelle non définie. Assurez-vous d'avoir bien activé le GPS.", Toast.LENGTH_LONG).show();
+        }
+        else {
+            double currentLat = currentPos.getLatitude();
+            double currentLong = currentPos.getLongitude();
+            double destLat = destPos.getLatitude();
+            double destLong = destPos.getLongitude();
 
-        String requête = "http://www.mapquestapi.com/directions/v2/route?key=deamSBfbxULjOkFvP9dW1QiAKewVYxVg&json={locations:[{latLng:{lat:" + currentLat + ",lng:" + currentLong + "}},{latLng:{lat:" + destLat + ",lng:" + destLong +"}}]}";
+            String requête = "http://www.mapquestapi.com/directions/v2/route?key=deamSBfbxULjOkFvP9dW1QiAKewVYxVg&json={locations:[{latLng:{lat:" + currentLat + ",lng:" + currentLong + "}},{latLng:{lat:" + destLat + ",lng:" + destLong +"}}]}";
 
-        DirectionTask directionTask = new DirectionTask(MapActivity.this);
+            DirectionTask directionTask = new DirectionTask(MapActivity.this);
 
-        directionTask.execute(requête);
+            directionTask.execute(requête);
+        }
     }
 }
