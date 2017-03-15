@@ -3,10 +3,10 @@
     package="iut.paci.noelcommunity">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -23,9 +23,10 @@
         </activity>
         <activity android:name=".DistrictActivity" />
         <activity android:name=".GridImageLayoutActivity" />
-        <activity android:name=".MapActivity"
-            android:hardwareAccelerated="false">
-        </activity>
+        <activity
+            android:name=".MapActivity"
+            android:hardwareAccelerated="false"></activity>
+        <activity android:name=".CreerCompteActivity"></activity>
     </application>
 
 </manifest>

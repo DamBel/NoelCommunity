@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final Button monBouton = (Button) findViewById(R.id.button);
+        final Button boutonCréerCompte = (Button) findViewById(R.id.button2);
         final EditText etId = (EditText) findViewById(R.id.editText);
         final EditText etMdp = (EditText) findViewById(R.id.editText2);
 
@@ -49,6 +50,17 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(v.getContext(), "Identifiant et/ou mot de passe incorrect", Toast.LENGTH_LONG).show();
                 }
+
+            }
+        });
+
+        boutonCréerCompte.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LoginActivity.this, CreerCompteActivity.class);
+                startActivity(intent);
 
             }
         });
