@@ -34,4 +34,6 @@ public abstract class Place implements Serializable {
     public double getLatitude() {
         return latitude;
     }
+
+    public String getName() { return name; }
 }

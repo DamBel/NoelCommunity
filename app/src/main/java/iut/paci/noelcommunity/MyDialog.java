@@ -27,10 +27,6 @@ public class MyDialog extends Dialog implements View.OnClickListener{
         this.titre = titre;
     }
 
-    public ImageButton getImageBouton(){
-        return this.bouton;
-    }
-
     @Override
     public void onClick(View v){
 
@@ -50,7 +46,4 @@ public class MyDialog extends Dialog implements View.OnClickListener{
         this.bouton.setOnClickListener(this);
     }
 
-    public ImageButton getImgBtn(){
-        return this.bouton;
-    }
 }

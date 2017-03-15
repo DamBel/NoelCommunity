@@ -20,4 +20,6 @@ public class Store extends Place implements Serializable{
     public String toString() {
         return name + "(" + treeCount + ")";
     }
+
+    public int getSapins() { return treeCount; }
 }

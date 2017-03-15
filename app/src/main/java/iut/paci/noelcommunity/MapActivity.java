@@ -52,6 +52,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -225,7 +226,10 @@ public class MapActivity extends AppCompatActivity {
 
                 if (contains(viewpos, tapPoint)) {
 
-                    afficherChemin(position_courante, geoPoint);
+                    MarkerDialog markerDialog = new MarkerDialog(MapActivity.this, position_courante, geoPoint);
+                    markerDialog.show();
+
+                    //afficherChemin(position_courante, geoPoint);
                     //Toast.makeText(MapActivity.this, "clicked marker", Toast.LENGTH_SHORT).show();
                     return true;
                 }
