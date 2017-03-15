@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Vibrator;
@@ -21,7 +19,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,25 +31,15 @@ import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.datastore.MapDataStore;
-import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.overlay.Polyline;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -63,13 +50,11 @@ public class MapActivity extends AppCompatActivity {
     District district;
     LatLong position_courante;
     Marker user_position = null;
-    District district_choisi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_map);
 
         /* Géolocalisation */
 
@@ -98,20 +83,9 @@ public class MapActivity extends AppCompatActivity {
                 mapView.getModel().frameBufferModel.getOverdrawFactor()
         );
 
-
-        //this.district = (District) getIntent().getExtras().getSerializable("district");
-
         Intent intent = getIntent();
         Bundle extra = intent.getExtras();
         this.district = (District) extra.getSerializable("district");
-
-
-
-
-
-        //this.afficherChemin();
-
-        //this.getTrees(1);
 
     }
 
@@ -247,27 +221,10 @@ public class MapActivity extends AppCompatActivity {
 
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        /*Criteria critere = new Criteria();
-        critere.setAccuracy(Criteria.ACCURACY_FINE);
-        critere.setAltitudeRequired(true);
-        critere.setBearingRequired(true);
-        critere.setCostAllowed(false);
-        critere.setPowerRequirement(Criteria.POWER_HIGH);
-        critere.setSpeedRequired(true);*/
-
         final String provider = LocationManager.NETWORK_PROVIDER;
 
         Location location = lm.getLastKnownLocation(provider);
         Log.i("MapActivity", "Le provider " + provider + " a été sélectionné!");
-
-        /*if (location != null) {
-            Log.d("MapActivity", "Position trouvée!");
-            location.getLongitude();
-            location.getLatitude();
-            location.getAltitude();
-        } else {
-            Log.d("MapActivity", "aucune position connue");
-        }*/
 
         LocationListener locationListener = new LocationListener() {
 

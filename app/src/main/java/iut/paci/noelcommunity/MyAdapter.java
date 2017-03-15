@@ -10,9 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /**
@@ -38,7 +35,7 @@ public class MyAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent){
 
         View layout = convertView;
-        ViewHolder holder = null;
+        ViewHolder holder;
 
         if (layout == null){
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -58,14 +55,6 @@ public class MyAdapter extends ArrayAdapter {
         holder.nomImage.setText(item.getName());
         holder.image.setImageResource(item.getImageResourceId());
 
-        //TextView nameTV = (TextView) layout.findViewById(R.id.nom);
-        //TextView numTV = (TextView) layout.findViewById(R.id.id);
-        //ImageView flagIV = (ImageView) layout.findViewById(R.id.img);
-
-        //nameTV.setText(data.get(position).getName());
-        //flagIV.setImageResource(data.get(position).getImageResourceId());
-        //numTV.setText(data.get(position).getId());
-
         final District d = data.get(position);
 
         layout.setOnClickListener(new View.OnClickListener() {
@@ -76,16 +65,10 @@ public class MyAdapter extends ArrayAdapter {
 
                 Bundle extra = new Bundle();
                 extra.putSerializable("district", d);
-//                        extra.putDouble("latitude", d.getLatitude());
-//                        extra.putDouble("longitude", d.getLongitude());
 
                 intent.putExtras(extra);
 
                 getContext().startActivity(intent);
-//                    }
-//                });
-//
-//                dialog.show();
             }
         });
 

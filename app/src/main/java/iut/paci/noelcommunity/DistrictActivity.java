@@ -1,26 +1,18 @@
 package iut.paci.noelcommunity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DistrictActivity extends AppCompatActivity {
 
-    private ArrayList<District> update = new ArrayList<District>();
+    private ArrayList<District> update = new ArrayList<>();
     MyAdapter adapter;
     GridView gridView;
     final ArrayList<District> liste = this.getData();
@@ -73,10 +65,6 @@ public class DistrictActivity extends AppCompatActivity {
 
             }
         });
-
-        //MyAdapter adapter = new MyAdapter(this, R.layout.activity_grid_image_layout, update);
-
-        //gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     private final String nom_admin = "admin";
     private final String mdp_admin = "admin";
 
-    private ArrayList<Contact> listeContact = new ArrayList<Contact>();
+    private ArrayList<Contact> listeContact = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

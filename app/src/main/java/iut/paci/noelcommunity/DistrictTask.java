@@ -3,15 +3,12 @@ package iut.paci.noelcommunity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.app.Activity;
 import org.mapsforge.core.model.LatLong;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
@@ -86,14 +83,11 @@ public class DistrictTask extends AsyncTask<String, Void, String> {
         try {
             District d = District.fromJson(this.get());
             for(Store s : d.getStores()) {
-                //MarkerDialog markerDialog = new MarkerDialog(activity, s, null);
 
                 this.activity.drawMaker(R.drawable.sapin, new LatLong(s.getLatitude(), s.getLongitude()));
             }
 
             for(Deposite de : d.getDeposites()) {
-
-                //MarkerDialog markerDialog = new MarkerDialog(activity, null, de);
 
                 this.activity.drawMaker(R.drawable.deposite, new LatLong(de.getLatitude(), de.getLongitude()));
             }

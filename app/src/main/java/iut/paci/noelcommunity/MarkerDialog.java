@@ -1,13 +1,9 @@
 package iut.paci.noelcommunity;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
-
 import org.mapsforge.core.model.LatLong;
 
 /**

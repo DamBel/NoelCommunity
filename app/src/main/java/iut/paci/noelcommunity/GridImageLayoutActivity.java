@@ -14,13 +14,5 @@ public class GridImageLayoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_image_layout);
 
-        /*gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(HelloGridView.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
     }
 }
