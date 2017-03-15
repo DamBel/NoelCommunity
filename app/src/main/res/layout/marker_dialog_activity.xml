@@ -25,14 +25,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="35dp" />
 
-    <TextView
-    android:id="@+id/nomMagasin"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:text="TextView" />
+        <TextView
+        android:id="@+id/nomMagasin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/nbSapin"
@@ -41,6 +42,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:visibility="invisible"
         android:text="TextView" />
 
 </RelativeLayout>

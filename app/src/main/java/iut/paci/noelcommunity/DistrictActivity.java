@@ -3,32 +3,80 @@ package iut.paci.noelcommunity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistrictActivity extends AppCompatActivity {
 
+    private ArrayList<District> update = new ArrayList<District>();
+    MyAdapter adapter;
+    GridView gridView;
+    final ArrayList<District> liste = this.getData();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        final ArrayList<District> liste = this.getData();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_district);
 
-        GridView gridView = (GridView) findViewById(R.id.gridView);
-        MyAdapter adapter = new MyAdapter(this, R.layout.activity_grid_image_layout, liste);
+        EditText rechercher = (EditText) findViewById(R.id.rechercherDistrict);
+
+        adapter = new MyAdapter(DistrictActivity.this, R.layout.activity_grid_image_layout, liste);
+
+        gridView = (GridView) findViewById(R.id.gridView);
+
         gridView.setAdapter(adapter);
 
-        //ImageView IV = (ImageView) findViewById(R.id.img);
+        rechercher.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                update.clear();
+                String search = s.toString();
+
+                for (District d : liste){
+
+                    if (d.getName().toLowerCase().contains(search.toLowerCase())){
+
+                        update.add(d);
+
+                    }
+
+                    adapter = new MyAdapter(DistrictActivity.this, R.layout.activity_grid_image_layout, update);
+
+                    gridView.setAdapter(adapter);
+
+                }
+
+            }
+        });
+
+        //MyAdapter adapter = new MyAdapter(this, R.layout.activity_grid_image_layout, update);
+
+        //gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -37,19 +85,7 @@ public class DistrictActivity extends AppCompatActivity {
 
                 MyDialog dialog = new MyDialog(DistrictActivity.this, liste.get(position).getName());
 
-                //dialog.getImageBouton().setOnClickListener(dialog);
-
                 dialog.show();
-
-                /*dialog.getImageBouton().setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(DistrictActivity.this, MapActivity.class);
-                        startActivity(intent);
-                    }
-                });*/
-
             }
         });
 
