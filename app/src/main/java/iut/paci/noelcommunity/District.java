@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by Damien_Admin2 on 10/02/2017.
  */
 
-public class District {
+public class District implements Serializable{
 
     private int id, imageResourceId;
     private String name, description;
@@ -67,6 +68,20 @@ public class District {
         Gson gson = new GsonBuilder().setDateFormat("HH:mm:ss").create();
         String json = gson.toJson(district);
         return json;
+    }
+
+    public List<Deposite> getDeposites() {
+        return deposites;
+    }
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public String toDialog() {
+        return description
+                + "\n\n"
+                + "Position : (" + longitude + ";" + latitude + ")";
     }
 
     public String getName() {

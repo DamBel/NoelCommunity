@@ -2,6 +2,7 @@ package iut.paci.noelcommunity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -54,6 +55,7 @@ import java.util.List;
 
 public class MapActivity extends AppCompatActivity {
 
+    private static final String TAG = "";
     MapView mapView;
     TileRendererLayer tileRendererLayer;
     TileCache tileCache;
@@ -93,6 +95,17 @@ public class MapActivity extends AppCompatActivity {
                 mapView.getModel().frameBufferModel.getOverdrawFactor()
         );
 
+
+        //this.district = (District) getIntent().getExtras().getSerializable("district");
+
+        Intent intent = getIntent();
+        Bundle extra = intent.getExtras();
+        this.district = (District) extra.getSerializable("district");
+
+
+
+
+
         //this.afficherChemin();
 
         //this.getTrees(1);
@@ -102,19 +115,21 @@ public class MapActivity extends AppCompatActivity {
     public void getTrees(int id) {
 
         Uri.Builder builder = new Uri.Builder();
-
         builder.scheme("http")
-                .authority("paci.misc-lab.org")
+                .authority("iut.96.lt")
+                .appendPath("community")
                 .appendPath("getDistrict.php")
                 .appendQueryParameter("id", id + "");
-
         String urlString = builder.build().toString();
+        urlString = "http://iut.96.lt/community/getDistrict.php?id=1";
+        urlString = "http://paci.misc-lab.org/getDistrict.php?id=1";
 
-        DistrictTask districtTask = new DistrictTask(MapActivity.this);
+        Log.d(TAG, "appelHttp: " + urlString);
+        new DistrictTask(MapActivity.this, urlString).execute(urlString);
 
-        String result = districtTask.execute(urlString).toString();
+        //String result = districtTask.execute(urlString).toString();
 
-        district = District.fromJson(result);
+        //district = District.fromJson(result);
 
     }
 
@@ -126,6 +141,9 @@ public class MapActivity extends AppCompatActivity {
         File file = new File(Environment.getExternalStorageDirectory(), "/maps/paris.map");
 
         MapDataStore mapDataStore = new MapFile(file);
+
+        this.appelHttp(this.district.getId());
+        //this.appelHttp(1);
 
         tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,
                 mapView.getModel().mapViewPosition, AndroidGraphicFactory.INSTANCE
@@ -169,6 +187,22 @@ public class MapActivity extends AppCompatActivity {
 
             }
         }*/
+    }
+
+    private void appelHttp(int id) {
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority("iut.96.lt")
+                .appendPath("community")
+                .appendPath("getDistrict.php")
+                .appendQueryParameter("id", id + "");
+        String urlString = builder.build().toString();
+        urlString = "http://iut.96.lt/community/getDistrict.php?id=1";
+        urlString = "http://paci.misc-lab.org/getDistrict.php?id=1";
+
+        Log.d(TAG, "appelHttp: " + urlString);
+        new DistrictTask(MapActivity.this, urlString).execute(urlString);
     }
 
     @Override

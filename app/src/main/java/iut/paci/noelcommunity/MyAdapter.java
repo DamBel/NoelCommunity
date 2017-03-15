@@ -2,6 +2,8 @@ package iut.paci.noelcommunity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +65,29 @@ public class MyAdapter extends ArrayAdapter {
         //nameTV.setText(data.get(position).getName());
         //flagIV.setImageResource(data.get(position).getImageResourceId());
         //numTV.setText(data.get(position).getId());
+
+        final District d = data.get(position);
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(), MapActivity.class);
+
+                Bundle extra = new Bundle();
+                extra.putSerializable("district", d);
+//                        extra.putDouble("latitude", d.getLatitude());
+//                        extra.putDouble("longitude", d.getLongitude());
+
+                intent.putExtras(extra);
+
+                getContext().startActivity(intent);
+//                    }
+//                });
+//
+//                dialog.show();
+            }
+        });
 
         return layout;
     }

@@ -26,4 +26,12 @@ public abstract class Place implements Serializable {
         this.closingTime = closingTime;
         this.districtId = districtId;
     }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
 }
