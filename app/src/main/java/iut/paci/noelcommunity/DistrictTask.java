@@ -88,11 +88,11 @@ public class DistrictTask extends AsyncTask<String, Void, String> {
             for(Store s : d.getStores()) {
                 this.activity.drawMaker(R.drawable.sapin, new LatLong(s.getLatitude(), s.getLongitude()));
             }
-            /*
+
             for(Deposite de : d.getDeposites()) {
-                this.activity.drawMaker(de.getIdRessource(), new LatLong(de.getLatitude(), de.getLongitude()));
+                this.activity.drawMaker(R.drawable.deposite, new LatLong(de.getLatitude(), de.getLongitude()));
             }
-            */
+
 
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
