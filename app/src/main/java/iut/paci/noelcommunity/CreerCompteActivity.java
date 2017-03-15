@@ -44,9 +44,9 @@ public class CreerCompteActivity extends AppCompatActivity {
                     Contact contact = new Contact(pseudo.getText().toString(), mdp.getText().toString());
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("contact", contact);
-                    Toast.makeText(v.getContext(), "Création de compte réussie!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreerCompteActivity.this, LoginActivity.class);
                     intent.putExtras(bundle);
+                    Toast.makeText(v.getContext(), "Création de compte réussie!", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
 

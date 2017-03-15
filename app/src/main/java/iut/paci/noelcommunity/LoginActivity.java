@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private final String nom_admin = "admin";
+    private final String mdp_admin = "admin";
+
     private ArrayList<Contact> listeContact = new ArrayList<Contact>();
 
     @Override
@@ -35,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etId = (EditText) findViewById(R.id.editText);
         final EditText etMdp = (EditText) findViewById(R.id.editText2);
 
+        etId.setText("admin");
+        etMdp.setText("admin");
+
         monBouton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
@@ -48,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     for (Contact c : listeContact){
 
-                        if (identifiant.equals(c.getNom()) && mdp.equals(c.getMdp())){
+                        if ((identifiant.equals(c.getNom()) && mdp.equals(c.getMdp())) || (identifiant.equals(nom_admin) && mdp.equals(mdp_admin))){
                             Toast.makeText(v.getContext(), "Connecté!", Toast.LENGTH_SHORT).show();
 
                             Contact personne = new Contact(identifiant, mdp);
