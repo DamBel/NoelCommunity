@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-
+import android.app.Activity;
 import org.mapsforge.core.model.LatLong;
 
 import java.io.BufferedInputStream;
