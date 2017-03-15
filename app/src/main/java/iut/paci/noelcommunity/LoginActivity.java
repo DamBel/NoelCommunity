@@ -9,11 +9,27 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class LoginActivity extends AppCompatActivity {
 
+    private final String nom_admin = "admin";
+    private final String mdp_admin = "admin";
+
+    private ArrayList<Contact> listeContact = new ArrayList<Contact>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+
+            Contact contact = (Contact) bundle.getSerializable("contact");
+            this.listeContact.add(contact);
+
+        }
+
         super.onCreate(savedInstanceState); //Toujours appeler la méthode de la classe super
         setContentView(R.layout.activity_login);
 
@@ -22,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etId = (EditText) findViewById(R.id.editText);
         final EditText etMdp = (EditText) findViewById(R.id.editText2);
 
-        etId.setText("abcd");
-        etMdp.setText("efgh");
+        etId.setText("admin");
+        etMdp.setText("admin");
 
         monBouton.setOnClickListener(new View.OnClickListener(){
 
@@ -34,23 +50,28 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (identifiant.equals("") || mdp.equals("")){
                     Toast.makeText(v.getContext(), "Identifiant et/ou mot de passe non renseigné", Toast.LENGTH_LONG).show();
-                }
-                else if (identifiant.equals("abcd") && mdp.equals("efgh")){
-                    Toast.makeText(v.getContext(), "Connecté!", Toast.LENGTH_SHORT).show();
+                } else {
 
-                    Contact personne = new Contact(identifiant, mdp);
+                    for (Contact c : listeContact){
 
-                    //Dans une fonction on ne met pas 'this' mais '...Activity.this'
-                    Intent successIntent = new Intent(LoginActivity.this, DistrictActivity.class);
-                    Bundle extra = new Bundle();
-                    extra.putSerializable("personne", personne);
-                    successIntent.putExtras(extra);
-                    startActivity(successIntent);
-                }
-                else{
+                        if ((identifiant.equals(c.getNom()) && mdp.equals(c.getMdp())) || (identifiant.equals(nom_admin) && mdp.equals(mdp_admin))){
+                            Toast.makeText(v.getContext(), "Connecté!", Toast.LENGTH_SHORT).show();
+
+                            Contact personne = new Contact(identifiant, mdp);
+
+                            //Dans une fonction on ne met pas 'this' mais '...Activity.this'
+                            Intent successIntent = new Intent(LoginActivity.this, DistrictActivity.class);
+                            Bundle extra = new Bundle();
+                            extra.putSerializable("personne", personne);
+                            successIntent.putExtras(extra);
+                            startActivity(successIntent);
+                        }
+
+                    }
+
                     Toast.makeText(v.getContext(), "Identifiant et/ou mot de passe incorrect", Toast.LENGTH_LONG).show();
-                }
 
+                }
             }
         });
 

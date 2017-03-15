@@ -1,13 +1,11 @@
 package iut.paci.noelcommunity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.app.Activity;
 import org.mapsforge.core.model.LatLong;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

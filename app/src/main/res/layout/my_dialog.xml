@@ -10,8 +10,8 @@
 
     <ImageButton
         android:id="@+id/ImageBouton"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="64dp"
+        android:layout_height="55dp" />
 
 
 </LinearLayout>
