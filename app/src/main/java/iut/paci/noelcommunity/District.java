@@ -17,11 +17,11 @@ public class District implements Serializable{
 
     private int id, imageResourceId;
     private String name, description;
-    private float longitude, latitude;
+    private double longitude, latitude;
     List<Store> stores;
     List<Deposite> deposites;
 
-    public District(int id, String name, String description, float longitude, float latitude, int imageResourceId){
+    public District(int id, String name, String description, double longitude, double latitude, int imageResourceId){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -88,12 +88,12 @@ public class District implements Serializable{
         return name;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
 
         return longitude;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
 
         return latitude;
     }

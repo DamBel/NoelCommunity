@@ -63,9 +63,11 @@ public class MapActivity extends AppCompatActivity {
     District district;
     LatLong position_courante;
     Marker user_position = null;
+    District district_choisi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_map);
 
@@ -113,27 +115,6 @@ public class MapActivity extends AppCompatActivity {
 
     }
 
-    public void getTrees(int id) {
-
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("http")
-                .authority("iut.96.lt")
-                .appendPath("community")
-                .appendPath("getDistrict.php")
-                .appendQueryParameter("id", id + "");
-        String urlString = builder.build().toString();
-        urlString = "http://iut.96.lt/community/getDistrict.php?id=1";
-        urlString = "http://paci.misc-lab.org/getDistrict.php?id=1";
-
-        Log.d(TAG, "appelHttp: " + urlString);
-        new DistrictTask(MapActivity.this, urlString).execute(urlString);
-
-        //String result = districtTask.execute(urlString).toString();
-
-        //district = District.fromJson(result);
-
-    }
-
     @Override
     public void onStart() {
 
@@ -169,25 +150,6 @@ public class MapActivity extends AppCompatActivity {
         mapView.getLayerManager().getLayers().add(tileRendererLayer);
         mapView.setCenter(new LatLong(48.841751, 2.2684444));
         mapView.setZoomLevel((byte) 19);
-
-        /*for(int i=1; i<21; ++i) {
-
-            this.getTrees(i);
-
-            for (Store s : district.stores) {
-
-                LatLong l = new LatLong(s.latitude, s.longitude);
-                drawMaker(R.drawable.sapin, l);
-
-            }
-
-            for (Deposite d : district.deposites) {
-
-                LatLong l = new LatLong(d.latitude, d.longitude);
-                drawMaker(R.drawable.sapin, l);
-
-            }
-        }*/
     }
 
     private void appelHttp(int id) {
@@ -199,7 +161,6 @@ public class MapActivity extends AppCompatActivity {
                 .appendPath("getDistrict.php")
                 .appendQueryParameter("id", id + "");
         String urlString = builder.build().toString();
-        urlString = "http://iut.96.lt/community/getDistrict.php?id=1";
         urlString = "http://paci.misc-lab.org/getDistrict.php?id=1";
 
         Log.d(TAG, "appelHttp: " + urlString);

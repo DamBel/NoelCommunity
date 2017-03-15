@@ -20,17 +20,22 @@ public class MyDialog extends Dialog implements View.OnClickListener{
     Activity activity;
     String titre;
     ImageButton bouton;
+    District district;
 
-    public MyDialog(Activity activity, String titre){
+    public MyDialog(Activity activity, String titre, District district){
         super(activity);
         this.activity = activity;
         this.titre = titre;
+        this.district = district;
     }
 
     @Override
     public void onClick(View v){
 
         Intent i = new Intent(this.activity, MapActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("district", district);
+        i.putExtras(bundle);
         activity.startActivity(i);
 
 
