@@ -124,6 +124,8 @@ public class MapActivity extends AppCompatActivity {
         mapView.getLayerManager().getLayers().add(tileRendererLayer);
         mapView.setCenter(new LatLong(48.841751, 2.2684444));
         mapView.setZoomLevel((byte) 19);
+
+
     }
 
     private void appelHttp(int id) {
@@ -174,11 +176,14 @@ public class MapActivity extends AppCompatActivity {
 
         //tentative du refresh du marker, sans succès pour l'instant
 
-        /*if (true){
+
+        /*
+        if (true){
             mapView.getLayerManager().getLayers().get(mapView.getLayerManager().getLayers().indexOf(user_position) - 1).setVisible(false);
             Boolean bool = mapView.getLayerManager().getLayers().get(mapView.getLayerManager().getLayers().indexOf(user_position) - 1).isVisible();
             Toast.makeText(MapActivity.this, ""+bool, Toast.LENGTH_SHORT).show();
-        }*/
+        }
+        */
 
         mapView.getLayerManager().getLayers().add(user_position);
 

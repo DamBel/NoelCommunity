@@ -13,9 +13,6 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String nom_admin = "admin";
-    private final String mdp_admin = "admin";
-
     private ArrayList<Contact> listeContact = new ArrayList<>();
 
     @Override
@@ -37,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etId = (EditText) findViewById(R.id.editText);
         final EditText etMdp = (EditText) findViewById(R.id.editText2);
 
-        etId.setText(nom_admin);
-        etMdp.setText(mdp_admin);
-
         monBouton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
@@ -59,10 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                             connecté = true;
                         }
 
-                    }
-
-                    if (identifiant.equals(nom_admin) && mdp.equals(mdp_admin)){
-                        connecté = true;
                     }
 
                     if (connecté){
